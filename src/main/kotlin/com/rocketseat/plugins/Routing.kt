@@ -1,7 +1,6 @@
 package com.rocketseat.plugins
 
-import com.rocketseat.CurrencyTypeResult
-import com.rocketseat.currencyTypes
+import com.rocketseat.model.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -31,6 +30,13 @@ fun Application.configureRouting() {
                 status = HttpStatusCode.BadRequest
             )
 
+            call.respond(
+                ExchangeRateResult(
+                    from = from.orUnknown(),
+                    to = to.orUnknown(),
+                    exchangeRate = exchangeRates[from]?.get(to).orZero()
+                )
+            )
         }
     }
 }

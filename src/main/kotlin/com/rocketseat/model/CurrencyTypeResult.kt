@@ -1,4 +1,4 @@
-package com.rocketseat
+package com.rocketseat.model
 
 import kotlinx.serialization.Serializable
 
